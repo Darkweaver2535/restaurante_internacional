@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar - Sabores del Mundo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #c9a96e;
+            --deep-gold: #b8956a;
+            --charcoal: #1a1a1a;
+            --warm-white: #fefefe;
+            --cream: #f8f6f0;
+            --accent-copper: #cd7f32;
+            --soft-gray: #6c6c6c;
+            --border-subtle: rgba(201, 169, 110, 0.15);
+            --navbar-bg: rgba(255,255,255,0.97); /* Fondo muy claro y uniforme */
+            --shadow-elegant: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream);
+            min-height: 100vh;
+        }
+
+        .navbar-elegant {
+            background: var(--navbar-bg); /* Fondo claro en todo el ancho */
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-elegant);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            z-index: 1000;
+        }
+
+        .navbar-elegant .container.navbar-container {
+            background: transparent; /* El fondo lo da el padre */
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 1140px;
+            width: 100%;
+            transition: none;
+            border-bottom: none;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-copper);
+            transform: translateY(-1px);
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-gold));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .brand-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .navbar-brand:hover .brand-icon::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-main {
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--soft-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .navbar-nav {
+            align-items: center;
+            gap: 5px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--charcoal);
+            padding: 8px 18px;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-gold);
+            background: rgba(201, 169, 110, 0.10);
+            box-shadow: 0 8px 25px rgba(201, 169, 110, 0.12);
+        }
+
+        .dropdown-menu {
+            background: var(--navbar-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            box-shadow: var(--shadow-elegant);
+            margin-top: 8px;
+            padding: 12px 0;
+            min-width: 220px;
+        }
+
+        .dropdown-item {
+            color: var(--charcoal);
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-gold));
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .language-selector {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--warm-white);
+            padding: 6px 12px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 80px;
+        }
+
+        .language-selector:hover,
+        .language-selector:focus {
+            border-color: var(--primary-gold);
+            background: var(--primary-gold);
+            color: white;
+            outline: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .social-link:hover {
+            color: var(--accent-copper);
+            border-color: var(--accent-copper);
+            background: rgba(201, 169, 110, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.2);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-copper);
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-reservation {
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-gold));
+            border: none;
+            padding: 10px 22px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-reservation:hover {
+            color: var(--primary-gold);
+            background: var(--warm-white);
+            box-shadow: 0 12px 35px rgba(201, 169, 110, 0.2);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 6px;
+            border-radius: 8px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler:hover {
+            background: var(--primary-gold);
+        }
+
+        .navbar-toggler-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .mobile-menu {
+            background: var(--navbar-bg);
+            border-radius: 20px;
+            margin-top: 10px;
+            padding: 20px 12px;
+            box-shadow: var(--shadow-elegant);
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Demo content */
+        .demo-content {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .demo-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--charcoal);
+            background: var(--cream);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+                margin-top: 10px;
+                gap: 8px;
+            }
+            .navbar-actions {
+                flex-direction: column;
+                margin-top: 15px;
+                gap: 10px;
+            }
+            .brand-main {
+                font-size: 1.2rem;
+            }
+            .brand-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-container {
+                padding: 6px 0;
+            }
+            .brand-main {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-elegant" id="mainNavbar">
+        <div class="container navbar-container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#home">
+                <div class="brand-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-main">Sabores del Mundo</div>
+                    <div class="brand-subtitle" style="font-size:0.7rem;color:var(--soft-gray);letter-spacing:2px;text-transform:uppercase;">Fine Dining Experience</div>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <div class="collapse navbar-collapse mobile-menu" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home"><i class="fas fa-home"></i>Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe-americas"></i>Cocinas del Mundo
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><span class="me-2">🇮🇳</span>Cocina India</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="me-2">🇮🇹</span>Cocina Italiana</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="me-2">🇲🇽</span>Cocina Mexicana</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="me-2">🇯🇵</span>Cocina Japonesa</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="me-2">🇫🇷</span>Cocina Francesa</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-utensils me-2"></i>Menú Completo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu"><i class="fas fa-book-open"></i>Carta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiencias"><i class="fas fa-wine-glass-alt"></i>Experiencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#eventos"><i class="fas fa-calendar-alt"></i>Eventos Privados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-award"></i>Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-concierge-bell"></i>Contacto</a>
+                    </li>
+                </ul>
+
+                <!-- Right Side Elements -->
+                <div class="navbar-actions">
+                    <!-- Reservation Button -->
+                    <a href="#reserva" class="btn-reservation"><i class="fas fa-calendar-check"></i>Reservar Mesa</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        let ticking = false;
+        function updateNavbar() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 30) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+            ticking = false;
+        }
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+
+        // Enhanced smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 90;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active link highlighting with intersection observer
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -80% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+
+        // Language selector functionality
+        document.querySelector('.language-selector').addEventListener('change', function() {
+            console.log('Idioma cambiado a:', this.value);
+            // Aquí puedes agregar la lógica para cambiar el idioma
+            
+            // Ejemplo de feedback visual
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Social links hover effects
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Reservation button click effect
+        document.querySelector('.btn-reservation').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.3);
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+            
+            // Navigate to reservation section
+            setTimeout(() => {
+                const target = document.querySelector('#contact');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Performance optimization: Debounce resize events
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                // Recalculate any layout-dependent elements if needed
+                console.log('Window resized');
+            }, 250);
+        });
+    </script>
+</body>
+</html>

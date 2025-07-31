@@ -1,0 +1,984 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabores del Mundo - Experiencia Gastronómica Exclusiva</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #C9A96E;
+            --deep-charcoal: #1A1A1A;
+            --warm-white: #FEFCF8;
+            --accent-copper: #B85D3E;
+            --muted-sage: #8B9B8A;
+            --soft-cream: #F5F2ED;
+            --dark-forest: #2C3E2D;
+            --gradient-luxury: linear-gradient(135deg, #C9A96E 0%, #B85D3E 50%, #8B9B8A 100%);
+            --shadow-soft: 0 20px 60px rgba(26, 26, 26, 0.1);
+            --shadow-elegant: 0 30px 80px rgba(26, 26, 26, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--warm-white);
+            color: var(--deep-charcoal);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(rgba(26,26,26,0.6), rgba(26,26,26,0.4)), 
+                        radial-gradient(circle at 30% 20%, rgba(201, 169, 110, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(184, 93, 62, 0.15) 0%, transparent 50%),
+                        var(--deep-charcoal);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(201, 169, 110, 0.08);
+            border-radius: 50%;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            animation: elegantFloat 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { 
+            top: 15%; left: 8%; 
+            animation-delay: 0s; 
+            transform: scale(0.8);
+        }
+        .floating-element:nth-child(2) { 
+            top: 70%; right: 10%; 
+            animation-delay: 3s; 
+            transform: scale(1.1);
+        }
+        .floating-element:nth-child(3) { 
+            bottom: 20%; left: 15%; 
+            animation-delay: 6s; 
+            transform: scale(0.9);
+        }
+
+        @keyframes elegantFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(var(--scale, 1)); }
+            33% { transform: translateY(-30px) rotate(2deg) scale(var(--scale, 1)); }
+            66% { transform: translateY(-15px) rotate(-1deg) scale(var(--scale, 1)); }
+        }
+
+        .hero-content {
+            color: var(--warm-white);
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--warm-white) 50%, var(--primary-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+
+        .btn-luxury {
+            background: var(--gradient-luxury);
+            border: none;
+            padding: 18px 45px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            color: var(--warm-white);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-luxury:hover::before {
+            left: 100%;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elegant);
+            color: var(--warm-white);
+        }
+
+        .btn-outline-luxury {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            padding: 16px 45px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-outline-luxury:hover {
+            background: var(--primary-gold);
+            color: var(--deep-charcoal);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 120px 0;
+            background: var(--soft-cream);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--deep-charcoal);
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--muted-sage);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card {
+            background: var(--warm-white);
+            border-radius: 16px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(201, 169, 110, 0.1);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-luxury);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elegant);
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-luxury);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 35px;
+            font-size: 2.2rem;
+            color: var(--warm-white);
+            position: relative;
+        }
+
+        .feature-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--deep-charcoal);
+        }
+
+        .feature-card p {
+            color: var(--muted-sage);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Countries Section */
+        .countries-section {
+            padding: 120px 0;
+            background: var(--deep-charcoal);
+            color: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countries-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(201, 169, 110, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(184, 93, 62, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .countries-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .country-card {
+            background: rgba(245, 242, 237, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            backdrop-filter: blur(20px);
+            height: 100%;
+        }
+
+        .country-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(201, 169, 110, 0.2);
+            border-color: var(--primary-gold);
+        }
+
+        .country-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .country-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(201, 169, 110, 0.9), rgba(184, 93, 62, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .country-card:hover .country-overlay {
+            opacity: 1;
+        }
+
+        .country-flag {
+            font-size: 4rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .country-info {
+            padding: 35px 30px;
+        }
+
+        .country-info h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .country-info p {
+            color: rgba(254, 252, 248, 0.8);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 100px 0;
+            background: var(--warm-white);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            background: var(--gradient-luxury);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--muted-sage);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Reservation Section */
+        .reservation-section {
+            padding: 120px 0;
+            background: var(--gradient-luxury);
+            color: var(--warm-white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reservation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.05"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.03"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            z-index: 1;
+        }
+
+        .reservation-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .reservation-form {
+            background: rgba(254, 252, 248, 0.1);
+            padding: 60px;
+            border-radius: 20px;
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(254, 252, 248, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-control, .form-select {
+            background: rgba(254, 252, 248, 0.95);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 18px 24px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: var(--deep-charcoal);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: var(--warm-white);
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 0.2rem rgba(201, 169, 110, 0.25);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: var(--muted-sage);
+        }
+
+        /* Animation classes - CORREGIDAS */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.hidden {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .floating-element {
+                width: 80px;
+                height: 80px;
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .reservation-form {
+                padding: 40px 30px;
+                margin: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home" style="background-image: url('{% static "images/hero-section.jpg" %}'); background-size: cover; background-position: center;">
+        <div class="hero-decoration">
+            <div class="floating-element">🍷</div>
+            <div class="floating-element">🥂</div>
+            <div class="floating-element">⭐</div>
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Sabores del Mundo</h1>
+                        <p class="hero-subtitle">
+                            Una experiencia gastronómica excepcional donde cada velada es un viaje culinario único. 
+                            Descubra sabores auténticos en un ambiente de lujo incomparable.
+                        </p>
+                        <div class="hero-cta">
+                            <a href="#reserva" class="btn-luxury">
+                                <i class="fas fa-concierge-bell me-2"></i>Reservar Experiencia
+                            </a>
+                            <a href="#paises" class="btn-outline-luxury">
+                                <i class="fas fa-compass me-2"></i>Explorar Destinos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Nuestra Filosofía</h2>
+            <p class="section-subtitle fade-in">Tres pilares fundamentales que definen la excelencia de Sabores del Mundo</p>
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4>Consultoría Personalizada</h4>
+                        <p>Nuestro equipo de expertos gastronómicos le guiará en la selección del destino culinario perfecto, adaptado a sus preferencias y la ocasión especial.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h4>Preparación Artesanal</h4>
+                        <p>Con 48 horas de anticipación, transformamos nuestro espacio y preparamos ingredientes premium importados directamente de cada región.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h4>Experiencia Inmersiva</h4>
+                        <p>Cada detalle ha sido cuidadosamente diseñado: desde la ambientación musical hasta la vajilla específica de cada cultura, creando una experiencia inolvidable.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <img src="{% static 'images/chefs.avif' %}" alt="Equipo de Chefs" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
+                        <h4>Equipo de Chefs Expertos</h4>
+                        <p>Nuestros chefs, con formación en las mejores escuelas culinarias y experiencia internacional, son apasionados por crear experiencias gastronómicas memorables.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <img src="{% static 'images/ingredients.avif' %}" alt="Ingredientes Frescos" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
+                        <h4>Ingredientes de Primera Calidad</h4>
+                        <p>Seleccionamos personalmente cada ingrediente, asegurando frescura y calidad. Trabajamos con proveedores locales e internacionales de confianza.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <img src="{% static 'images/ambiance.avif' %}" alt="Ambiente Exclusivo" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
+                        <h4>Ambiente Exclusivo y Acogedor</h4>
+                        <p>Nuestros espacios están diseñados para ofrecer privacidad y confort, con una decoración que refleja la riqueza cultural de cada destino culinario.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section class="countries-section" id="paises">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="country-card fade-in">
+                        <div class="country-image" style="background-image: url('{% static "images/comida-indu.jpg" %}'); background-size: cover; background-position: center;">
+                            <div class="country-overlay">
+                                <span class="country-flag">🇮🇳</span>
+                            </div>
+                        </div>
+                        <div class="country-info">
+                            <h5>India Maharajá</h5>
+                            <p>Especias aromáticas, curries refinados y la elegancia de la cocina real india en cada bocado.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="country-card fade-in">
+                        <div class="country-image" style="background-image: url('{% static "images/comida-italiana.jpeg" %}'); background-size: cover; background-position: center;">
+                            <div class="country-overlay">
+                                <span class="country-flag">🇮🇹</span>
+                            </div>
+                        </div>
+                        <div class="country-info">
+                            <h5>Italia Renacentista</h5>
+                            <p>La autenticidad de la Toscana con pasta artesanal, trufas y vinos de denominación de origen.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="country-card fade-in">
+                        <div class="country-image" style="background-image: url('{% static "images/comida-francesa.jpg" %}'); background-size: cover; background-position: center;">
+                            <div class="country-overlay">
+                                <span class="country-flag">🇫🇷</span>
+                            </div>
+                        </div>
+                        <div class="country-info">
+                            <h5>Francia Gastronómica</h5>
+                            <p>La sofisticación parisina con técnicas clásicas, quesos selectos y la finura de la haute cuisine.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="country-card fade-in">
+                        <div class="country-image" style="background-image: url('{% static "images/comida-japonesa.jpg" %}'); background-size: cover; background-position: center;">
+                            <div class="country-overlay">
+                                <span class="country-flag">🇯🇵</span>
+                            </div>
+                        </div>
+                        <div class="country-info">
+                            <h5>Japón Imperial</h5>
+                            <p>La pureza del omakase con ingredientes selectos y la ceremonia tradicional japonesa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 fade-in">
+                <p class="fs-4" style="color: var(--primary-gold);">
+                    <i class="fas fa-globe-americas me-3"></i>
+                    <strong>24 destinos culinarios</strong> cuidadosamente seleccionados
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <div class="stat-number" data-target="24">24</div>
+                        <div class="stat-label">Destinos Exclusivos</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <div class="stat-number" data-target="1200">1200</div>
+                        <div class="stat-label">Experiencias Creadas</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <div class="stat-number" data-target="48">48</div>
+                        <div class="stat-label">Horas de Preparación</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <div class="stat-number" data-target="100">100</div>
+                        <div class="stat-label">Satisfacción Garantizada</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section" id="reserva">
+        <div class="container">
+            <img src="{% static 'images/mesa-reservada.jpg' %}" alt="Mesa reservada" class="mb-5 rounded" style="width:100%; max-width:600px; object-fit:cover; display:block; margin:auto;">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="section-title mb-4 fade-in">Reserve Su Experiencia</h2>
+                    <p class="mb-5 fs-5 fade-in">
+                        Permítanos crear una experiencia gastronómica excepcional para usted. 
+                        Nuestro equipo se pondrá en contacto para personalizar cada detalle.
+                    </p>
+                    
+                    <div class="reservation-form fade-in">
+                        <form id="reservationForm">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Nombre completo *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="tel" class="form-control" placeholder="Teléfono de contacto *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Correo electrónico *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" placeholder="Número de comensales *" min="2" max="12" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="date" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select" required>
+                                        <option value="">Seleccione su destino culinario *</option>
+                                        <option value="india">India Maharajá</option>
+                                        <option value="francia">Francia Gastronómica</option>
+                                        <option value="italia">Italia Renacentista</option>
+                                        <option value="japon">Japón Imperial</option>
+                                        <option value="mexico">México Colonial</option>
+                                        <option value="grecia">Grecia Clásica</option>
+                                        <option value="tailandia">Tailandia Real</option>
+                                        <option value="china">China Dinástica</option>
+                                        <option value="consulta">Consulta personalizada</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="4" placeholder="Ocasión especial, preferencias dietéticas o solicitudes particulares"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-luxury w-100">
+                                        <i class="fas fa-envelope me-2"></i>Solicitar Reserva Exclusiva
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize elements as visible by default
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make sure all elements are visible initially
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('hidden');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations - CORREGIDO
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('hidden');
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 30);
+        }
+
+        // Stats counter animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-number');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.target);
+                        const suffix = target === 100 ? '%' : target === 48 ? 'h' : '+';
+                        counter.textContent = '0';
+                        animateCounter(counter, target, suffix);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Enhanced parallax effect for floating elements
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            document.querySelectorAll('.floating-element').forEach((element, index) => {
+                const speed = 0.2 + (index * 0.1);
+                const yPos = scrolled * speed;
+                element.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.01}deg)`;
+            });
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Form submission with enhanced validation
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Procesando...';
+            submitBtn.disabled = true;
+            
+            // Simulate form processing
+            setTimeout(() => {
+                // Create success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'alert alert-success mt-4';
+                successMsg.style.background = 'rgba(139, 155, 138, 0.1)';
+                successMsg.style.border = '1px solid var(--muted-sage)';
+                successMsg.style.color = 'var(--muted-sage)';
+                successMsg.innerHTML = `
+                    <i class="fas fa-check-circle me-2"></i>
+                    <strong>¡Excelente!</strong> Su solicitud ha sido recibida. 
+                    Nuestro equipo de concierge se pondrá en contacto con usted 
+                    en las próximas 2 horas para confirmar todos los detalles de su experiencia.
+                `;
+                
+                this.parentNode.insertBefore(successMsg, this.nextSibling);
+                this.style.display = 'none';
+                
+                // Scroll to success message
+                successMsg.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 2000);
+        });
+
+        // Enhanced hover effects for country cards
+        document.querySelectorAll('.country-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add luxury cursor effect
+        const cursor = document.createElement('div');
+        cursor.className = 'luxury-cursor';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        `;
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.opacity = '1';
+        });
+
+        // Enhance cursor on hover
+        document.querySelectorAll('a, button, .country-card, .feature-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.background = 'rgba(201, 169, 110, 0.2)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'transparent';
+            });
+        });
+
+        // Ensure content is visible on page load
+        window.addEventListener('load', function() {
+            // Force visibility check after page load
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const isVisible = (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                    
+                    if (isVisible || rect.top < window.innerHeight) {
+                        el.classList.remove('hidden');
+                        el.classList.add('visible');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
