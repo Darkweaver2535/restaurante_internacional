@@ -7,7 +7,8 @@
     <title>Comida sin visa - Experiencia Gastronómica Exclusiva</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Cambiar las fuentes por unas más modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-gold: #C9A96E;
@@ -29,7 +30,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif; /* Fuente moderna y legible */
             line-height: 1.7;
             overflow-x: hidden;
             background: var(--warm-white);
@@ -39,14 +40,15 @@
         /* Hero Section */
         .hero-section {
             min-height: 100vh;
-            background: linear-gradient(rgba(26,26,26,0.6), rgba(26,26,26,0.4)), 
-                        radial-gradient(circle at 30% 20%, rgba(201, 169, 110, 0.2) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(184, 93, 62, 0.15) 0%, transparent 50%),
-                        var(--deep-charcoal);
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), 
+                radial-gradient(circle at 30% 20%, rgba(201, 169, 110, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(184, 93, 62, 0.15) 0%, transparent 50%);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            background-blend-mode: overlay;
         }
 
         .hero-decoration {
@@ -102,16 +104,19 @@
         }
 
         .hero-title {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif; /* Fuente moderna y elegante */
             font-size: 5.5rem;
-            font-weight: 300;
+            font-weight: 700; /* Más bold para impacto */
             margin-bottom: 2rem;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--warm-white) 50%, var(--primary-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleShimmer 4s ease-in-out infinite;
+            letter-spacing: -1px; /* Espaciado moderno */
+            color: #F8F6F3;
+            text-shadow: 
+                0 0 30px rgba(0, 0, 0, 0.8),
+                0 4px 8px rgba(0, 0, 0, 0.6),
+                0 8px 16px rgba(0, 0, 0, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 0 20px rgba(248, 246, 243, 0.3));
         }
 
         @keyframes titleShimmer {
@@ -120,14 +125,27 @@
         }
 
         .hero-subtitle {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.4rem;
-            font-weight: 300;
+            font-weight: 400;
             margin-bottom: 3rem;
-            opacity: 0.9;
+            opacity: 0.95;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            color: var(--warm-white);
+            /* Sombras para el subtítulo */
+            text-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.8),
+                0 4px 12px rgba(0, 0, 0, 0.6),
+                1px 1px 3px rgba(0, 0, 0, 0.9);
+            /* Fondo sutil detrás del texto */
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hero-cta {
@@ -139,11 +157,12 @@
         }
 
         .btn-luxury {
+            font-family: 'Poppins', sans-serif;
             background: var(--gradient-luxury);
             border: none;
             padding: 18px 45px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 8px;
             color: var(--warm-white);
             text-decoration: none;
@@ -153,6 +172,14 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             font-size: 0.9rem;
+            /* Sombras para los botones */
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.7),
+                1px 1px 2px rgba(0, 0, 0, 0.8);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(0, 0, 0, 0.2);
         }
 
         .btn-luxury::before {
@@ -177,24 +204,36 @@
         }
 
         .btn-outline-luxury {
-            background: transparent;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(0, 0, 0, 0.4);
             border: 2px solid var(--primary-gold);
             padding: 16px 45px;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 8px;
-            color: var(--primary-gold);
+            color: var(--warm-white);
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            backdrop-filter: blur(8px);
+            /* Sombras para el botón outline */
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                1px 1px 2px rgba(0, 0, 0, 0.9);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .btn-outline-luxury:hover {
             background: var(--primary-gold);
             color: var(--deep-charcoal);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-soft);
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.4),
+                0 8px 20px rgba(201, 169, 110, 0.3);
+            text-shadow: none;
         }
 
         /* Features Section */
@@ -205,16 +244,17 @@
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif; /* Consistente con el título principal */
             font-size: 3.5rem;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: 1.5rem;
             text-align: center;
             color: var(--deep-charcoal);
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
         }
 
         .section-subtitle {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.2rem;
             color: var(--muted-sage);
             text-align: center;
@@ -222,6 +262,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
         }
 
         .feature-card {
@@ -273,17 +314,19 @@
         }
 
         .feature-card h4 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 20px;
             color: var(--deep-charcoal);
         }
 
         .feature-card p {
+            font-family: 'Poppins', sans-serif;
             color: var(--muted-sage);
             line-height: 1.7;
             font-size: 1rem;
+            font-weight: 400;
         }
 
         /* Countries Section */
@@ -364,17 +407,19 @@
         }
 
         .country-info h5 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.6rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 15px;
             color: var(--primary-gold);
         }
 
         .country-info p {
+            font-family: 'Poppins', sans-serif;
             color: rgba(254, 252, 248, 0.8);
             line-height: 1.6;
             font-size: 0.95rem;
+            font-weight: 400;
         }
 
         /* Stats Section */
@@ -389,9 +434,9 @@
         }
 
         .stat-number {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 4rem;
-            font-weight: 300;
+            font-weight: 700;
             color: var(--primary-gold);
             margin-bottom: 15px;
             background: var(--gradient-luxury);
@@ -401,6 +446,7 @@
         }
 
         .stat-label {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             color: var(--muted-sage);
             font-weight: 500;
@@ -445,6 +491,7 @@
         }
 
         .form-control, .form-select {
+            font-family: 'Poppins', sans-serif;
             background: rgba(254, 252, 248, 0.95);
             border: 2px solid transparent;
             border-radius: 12px;
@@ -453,6 +500,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             color: var(--deep-charcoal);
+            font-weight: 400;
         }
 
         .form-control:focus, .form-select:focus {
@@ -487,11 +535,25 @@
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 3.5rem;
+                color: #F8F6F3;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                text-shadow: 
+                    0 0 20px rgba(0, 0, 0, 0.9),
+                    0 3px 6px rgba(0, 0, 0, 0.7),
+                    0 6px 12px rgba(0, 0, 0, 0.5),
+                    1px 1px 3px rgba(0, 0, 0, 1);
+                -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.4);
+                filter: drop-shadow(0 0 15px rgba(248, 246, 243, 0.2));
             }
             
             .hero-subtitle {
                 font-size: 1.1rem;
-                padding: 0 20px;
+                padding: 15px 20px;
+                margin: 0 20px 3rem;
+                text-shadow: 
+                    0 1px 6px rgba(0, 0, 0, 0.9),
+                    0 3px 8px rgba(0, 0, 0, 0.7);
             }
             
             .hero-cta {
@@ -508,6 +570,7 @@
 
             .section-title {
                 font-size: 2.5rem;
+                font-weight: 600;
             }
 
             .reservation-form {
@@ -523,9 +586,7 @@
     <!-- Hero Section -->
     <section class="hero-section" id="home" style="background-image: url('{% static "images/hero-section.jpg" %}'); background-size: cover; background-position: center;">
         <div class="hero-decoration">
-            <div class="floating-element">
-                <img src="{% static 'images/logo.png' %}" alt="Logo Comida sin visa" style="width:60px; height:60px; object-fit:contain;">
-            </div>
+            <div class="floating-element">🍽️</div>
             <div class="floating-element">🥂</div>
             <div class="floating-element">⭐</div>
         </div>
@@ -596,16 +657,16 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="feature-card fade-in">
-                        <img src="{% static 'images/ingredients.avif' %}" alt="Ingredientes Frescos" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
+                        <img src="{% static 'images/chefs.avif' %}" alt="Ingredientes Frescos" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
                         <h4>Ingredientes de Primera Calidad</h4>
                         <p>Seleccionamos personalmente cada ingrediente, asegurando frescura y calidad. Trabajamos con proveedores locales e internacionales de confianza.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="feature-card fade-in">
-                        <img src="{% static 'images/ambiance.avif' %}" alt="Ambiente Exclusivo" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ambiente Exclusivo" class="mb-4 rounded" style="width:100px; height:100px; object-fit:cover;">
                         <h4>Ambiente Exclusivo y Acogedor</h4>
-                        <p>Nuestros espacios están diseñados para ofrecer privacidad y confort, con una decoración que refleja la riqueza cultural de cada destino culinario.</p>
+                        <p>Nuestros espacios están diseñados para ofrecer privacidad y confort, with a decoración que refleja la riqueza cultural de cada destino culinario.</p>
                     </div>
                 </div>
             </div>

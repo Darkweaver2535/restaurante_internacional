@@ -7,7 +7,7 @@
     <title>Navbar - Sabores del Mundo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-gold: #c9a96e;
@@ -58,15 +58,15 @@
         }
 
         .navbar-brand {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif; /* Cambio de fuente */
             font-size: 1.5rem;
-            font-weight: 500;
+            font-weight: 600; /* Más peso */
             color: var(--primary-gold);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
-            letter-spacing: 0.5px;
+            letter-spacing: -0.3px; /* Espaciado moderno */
             transition: all 0.3s ease;
         }
 
@@ -76,36 +76,37 @@
         }
 
         .brand-icon {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--deep-gold));
-            border-radius: 8px;
+            width: 60px; /* Aumentado de 38px a 60px */
+            height: 60px; /* Aumentado de 38px a 60px */
+            background: transparent; /* Quitar el fondo cuadrado */
+            border-radius: 0; /* Quitar el border-radius */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.5rem; /* Aumentado de 1.1rem */
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
         .brand-icon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
+            display: none; /* Quitar el efecto de brillo */
         }
 
         .navbar-brand:hover .brand-icon::before {
-            opacity: 1;
-            transform: rotate(45deg) translate(50%, 50%);
+            display: none; /* Quitar el efecto de brillo al hover */
+        }
+
+        .brand-icon img {
+            width: 100%; /* Que la imagen ocupe todo el espacio disponible */
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover .brand-icon img {
+            transform: scale(1.05); /* Pequeño efecto de hover solo en la imagen */
         }
 
         .brand-text {
@@ -115,13 +116,15 @@
 
         .brand-main {
             font-size: 1.8rem;
-            font-weight: 500;
+            font-weight: 700; /* Más bold */
             line-height: 1;
+            letter-spacing: -0.5px;
         }
 
         .brand-subtitle {
+            font-family: 'Poppins', sans-serif;
             font-size: 0.75rem;
-            font-weight: 300;
+            font-weight: 400;
             color: var(--soft-gray);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -133,11 +136,13 @@
         }
 
         .navbar-nav .nav-link {
+            font-family: 'Poppins', sans-serif;
             color: var(--charcoal);
             padding: 8px 18px;
             border-radius: 50px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.95rem;
+            font-weight: 500;
             border: 1px solid transparent;
         }
 
@@ -159,9 +164,11 @@
         }
 
         .dropdown-item {
+            font-family: 'Poppins', sans-serif;
             color: var(--charcoal);
             padding: 10px 20px;
             font-size: 0.9rem;
+            font-weight: 400;
             border-radius: 0;
             transition: all 0.3s ease;
             display: flex;
@@ -251,12 +258,13 @@
         }
 
         .btn-reservation {
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--primary-gold), var(--deep-gold));
             border: none;
             padding: 10px 22px;
             border-radius: 50px;
             color: white;
-            font-weight: 500;
+            font-weight: 600; /* Más peso */
             font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -336,9 +344,9 @@
                 font-size: 1.2rem;
             }
             .brand-icon {
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
+                width: 50px; /* Ajustado para móvil */
+                height: 50px;
+                font-size: 1.3rem;
             }
         }
 
@@ -348,6 +356,11 @@
             }
             .brand-main {
                 font-size: 1rem;
+            }
+            .brand-icon {
+                width: 45px; /* Ajustado para pantallas muy pequeñas */
+                height: 45px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -359,7 +372,7 @@
             <!-- Brand -->
             <a class="navbar-brand" href="#home">
                 <div class="brand-icon">
-                    <img src="{% static 'images/logo.png' %}" alt="Logo Comida sin visa" style="width:32px; height:32px; object-fit:contain;">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo Comida sin visa">
                 </div>
                 <div class="brand-text">
                     <div class="brand-main">Comida sin visa</div>
